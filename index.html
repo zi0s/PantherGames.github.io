@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RO.EARN - Earn Robux</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="app">
+        <!-- LOGIN PAGE -->
+        <div id="login-page" class="page">
+            <div class="login-container">
+                <img src="logo.png" alt="RO.GOLD Logo" class="logo">
+                <div id="login-steps-container">
+                    <!-- Step 1: Enter Username -->
+                    <div id="login-step-1">
+                        <h1>Sign In to your account</h1>
+                        
+                        <div class="login-form">
+                            <input type="text" id="roblox-username" placeholder="Username">
+                            <button id="find-account-btn">
+                                Sign In
+                            </button>
+                        </div>
+                        <div id="login-error" class="error-message"></div>
+                        
+                    </div>
+
+                    <!-- Step 2: Confirm Account -->
+                    <div id="login-step-2" class="hidden">
+                        <h2>Is this you?</h2>
+                        <div class="profile-confirmation">
+                            <img id="confirmation-avatar" src="roblox-avatar.png" alt="Your Roblox Avatar">
+                            <p id="confirmation-username"></p>
+                        </div>
+                        <div class="confirmation-buttons">
+                            <button id="confirm-me-btn">That's me</button>
+                            <button id="not-me-btn">Not me</button>
+                        </div>
+                        <div id="confirmation-error" class="error-message"></div>
+                    </div>
+
+                    <!-- Loading Indicator -->
+                    <div id="loading-container" class="hidden">
+                        <div class="spinner"></div>
+                        <div id="loading-text">Finding your account...</div>
+                    </div>
+                </div>
+                
+                <footer>
+                   <div class="social-links">
+                       
+                   </div>
+                </footer>
+            </div>
+        </div>
+
+        <!-- MAIN APP PAGE -->
+        <div id="main-page" class="page hidden">
+            <header>
+                <img src="logo.png" alt="RO.GOLD Logo" class="logo-small">
+                <div class="user-info">
+                    <div class="balance-container">
+                        <img src="robux-icon.png" alt="Robux" class="robux-icon">
+                        <span id="user-balance">0.00</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="roblox-avatar.png" alt="Avatar" id="user-avatar">
+                        <span id="username-display"></span>
+                    </div>
+                    <button id="logout-btn">Logout</button>
+                </div>
+            </header>
+            <main class="main-content">
+                <aside class="sidebar">
+                    <nav>
+                        <ul>
+                            <li class="active"><a href="#"><img src="earn-icon.png" class="nav-icon" alt="Earn">Earn</a></li>
+                            <li><a href="#" id="withdraw-nav-btn"><img src="withdraw-icon.png" class="nav-icon" alt="Withdraw">Withdraw</a></li>
+                            <li><a href="#"><img src="leaderboard-icon.png" class="nav-icon" alt="Leaderboard">Leaderboard</a></li>
+                            <li><a href="#"><img src="referrals-icon.png" class="nav-icon" alt="Referrals">Referrals</a></li>
+                        </ul>
+                    </nav>
+                    <div class="recent-earnings">
+                        <h3>Recent Earnings</h3>
+                        <ul id="earnings-list">
+                            <!-- JS will populate this -->
+                        </ul>
+                    </div>
+                </aside>
+                <section class="offer-walls">
+                    <div class="offer-banner">
+                        <h2>Click On An Offerwall & Start Earning!</h2>
+                    </div>
+                    <div class="offer-grid">
+                        <div class="offer-card">
+                            <img src="adgate-logo.png" alt="AdGate Media">
+                            <span>AdGate Media</span>
+                            <span class="tag hot">Hot!</span>
+                        </div>
+                        <div class="offer-card">
+                            <img src="lootably-logo.png" alt="Lootably">
+                            <span>Lootably</span>
+                             <span class="tag easy">Easy</span>
+                        </div>
+                        <div class="offer-card">
+                            <img src="torox-logo.png" alt="Torox">
+                            <span>Torox</span>
+                             <span class="tag new">New!</span>
+                        </div>
+                        <div class="offer-card">
+                             <img src="ayet-logo.png" alt="AYE Studios">
+                             <span>ayeT-Studios</span>
+                             <span class="tag easy">Easy</span>
+                        </div>
+                         <div class="offer-card">
+                             <img src="theoremreach-logo.png" alt="TheoremReach">
+                             <span>TheoremReach</span>
+                             <span class="tag hot">Hot!</span>
+                        </div>
+                        <div class="offer-card coming-soon">
+                             <p>More Coming Soon...</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- WITHDRAW MODAL -->
+    <div id="withdraw-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" id="close-withdraw-modal">&times;</span>
+            <h2>Withdraw Robux</h2>
+            <p>Your current balance: <img src="robux-icon.png" alt="Robux" class="robux-icon-small"><span id="modal-balance"></span></p>
+            <div class="withdraw-group">
+                <img src="robux-icon.png" alt="Robux" class="robux-icon-small">
+                <input type="number" id="withdraw-amount" placeholder="Amount (min 10)">
+            </div>
+            <button id="confirm-withdraw-btn">Confirm Withdraw</button>
+            <div id="withdraw-message" class="message"></div>
+        </div>
+    </div>
+    
+    <!-- ADMIN MODAL -->
+    <div id="admin-modal" class="modal hidden">
+        <div class="modal-content">
+             <span class="close-btn" id="close-admin-modal">&times;</span>
+            <h2>Admin Panel</h2>
+            <div id="admin-login" >
+                <input type="password" id="admin-code" placeholder="Enter Admin Code">
+                <button id="admin-login-btn">Login</button>
+                <div id="admin-login-error" class="error-message"></div>
+            </div>
+            <div id="admin-panel-content" class="hidden">
+                <h3>Pending Withdrawals</h3>
+                <div id="withdrawals-list">
+                    <!-- JS will populate this -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="importmap">
+    {
+      "imports": {
+        "canvas-confetti": "https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.module.mjs"
+      }
+    }
+    </script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
